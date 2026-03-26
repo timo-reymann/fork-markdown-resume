@@ -7,13 +7,13 @@ export const DEFAULT_STYLES = {
   marginH: 45,
   lineHeight: 1.3,
   paragraphSpace: 5,
-  themeColor: "#000000",
+  themeColor: "#D65108",
   fontCJK: {
     name: "华康宋体",
     fontFamily: "HKST"
   },
   fontEN: {
-    name: "Verdana"
+    name: "Georgia"
   },
   fontSize: 12,
   paper: "A4"
