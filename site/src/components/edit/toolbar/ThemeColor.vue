@@ -87,17 +87,15 @@ import { normalizeProps, useMachine } from "@zag-js/vue";
 const { styles, setStyle } = useStyleStore();
 const isFocus = ref(false);
 
-const [state, send] = useMachine(
-  colorPicker.machine({
-    id: "theme-color",
-    value: colorPicker.parse(styles.themeColor),
-    positioning: {
-      gutter: 14
-    },
-    onValueChange: (details) => setStyle("themeColor", getHexString(details.value))
-  })
-);
-const api = computed(() => colorPicker.connect(state.value, send, normalizeProps));
+const service = useMachine(colorPicker.machine, {
+  id: "theme-color",
+  value: colorPicker.parse(styles.themeColor),
+  positioning: {
+    gutter: 14
+  },
+  onValueChange: (details) => setStyle("themeColor", getHexString(details.value))
+});
+const api = computed(() => colorPicker.connect(service, normalizeProps));
 
 watch(
   () => styles.themeColor,

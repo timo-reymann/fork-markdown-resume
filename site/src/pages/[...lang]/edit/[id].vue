@@ -39,14 +39,12 @@ import * as splitter from "@zag-js/splitter";
 import { normalizeProps, useMachine } from "@zag-js/vue";
 
 // Horizontal splitpane
-const [state, send] = useMachine(
-  splitter.machine({
-    id: "h",
-    size: [{ id: "editor" }, { id: "preview" }]
-  })
-);
+const service = useMachine(splitter.machine, {
+  id: "h",
+  size: [{ id: "editor" }, { id: "preview" }]
+});
 
-const api = computed(() => splitter.connect(state.value, send, normalizeProps));
+const api = computed(() => splitter.connect(service, normalizeProps));
 
 // Fetch resume data
 const route = useRoute();

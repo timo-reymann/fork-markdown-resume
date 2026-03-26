@@ -46,6 +46,6 @@ const props = defineProps<{
   boxClass?: string;
 }>();
 
-const [state, send] = useMachine(dialog.machine({ id: props.id }));
-const api = computed(() => dialog.connect(state.value, send, normalizeProps));
+const service = useMachine(dialog.machine, { id: props.id });
+const api = computed(() => dialog.connect(service, normalizeProps));
 </script>

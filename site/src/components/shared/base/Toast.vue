@@ -21,12 +21,11 @@
 
 <script lang="ts" setup>
 import * as toast from "@zag-js/toast";
-import { normalizeProps, useActor } from "@zag-js/vue";
+import { normalizeProps } from "@zag-js/vue";
 
 const props = defineProps<{ actor: toast.Service }>();
 
-const [state, send] = useActor(props.actor);
-const api = computed(() => toast.connect(state.value, send, normalizeProps));
+const api = computed(() => toast.connect(props.actor, normalizeProps));
 
 const bgColor = computed(() => {
   switch (api.value.type) {

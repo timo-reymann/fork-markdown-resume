@@ -47,25 +47,23 @@ import { fetchFile } from "@renovamen/utils";
 // File component component
 const localFile = ref<string | null>(null);
 
-const [state, send] = useMachine(
-  fileUpload.machine({
-    id: "import-dialog",
-    accept: ".md",
-    onFileAccept: ({ files }) => {
-      const reader = new FileReader();
+const service = useMachine(fileUpload.machine, {
+  id: "import-dialog",
+  accept: ".md",
+  onFileAccept: ({ files }) => {
+    const reader = new FileReader();
 
-      reader.onloadend = () => {
-        const content = reader.result as string;
-        setResumeMd(content);
-      };
-      reader.readAsText(files[0]);
+    reader.onloadend = () => {
+      const content = reader.result as string;
+      setResumeMd(content);
+    };
+    reader.readAsText(files[0]);
 
-      localFile.value = files[0].name;
-      pastedURL.value = "";
-    }
-  })
-);
-const api = computed(() => fileUpload.connect(state.value, send, normalizeProps));
+    localFile.value = files[0].name;
+    pastedURL.value = "";
+  }
+});
+const api = computed(() => fileUpload.connect(service, normalizeProps));
 
 // Fetched file from pasted URL
 const pastedURL = ref("");

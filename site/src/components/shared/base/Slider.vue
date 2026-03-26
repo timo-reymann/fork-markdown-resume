@@ -46,18 +46,16 @@ const props = defineProps<{
   onValueChange: (value: number) => void;
 }>();
 
-const [state, send] = useMachine(
-  slider.machine({
-    id: props.id,
-    thumbAlignment: "center",
-    value: [props.default],
-    min: props.min,
-    max: props.max,
-    step: props.step,
-    onValueChange: (details) => props.onValueChange(details.value[0])
-  })
-);
-const api = computed(() => slider.connect(state.value, send, normalizeProps));
+const service = useMachine(slider.machine, {
+  id: props.id,
+  thumbAlignment: "center",
+  value: [props.default],
+  min: props.min,
+  max: props.max,
+  step: props.step,
+  onValueChange: (details) => props.onValueChange(details.value[0])
+});
+const api = computed(() => slider.connect(service, normalizeProps));
 
 watch(
   () => props.default,

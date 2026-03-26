@@ -89,14 +89,12 @@ const tabList = [
   { value: "css", label: "CSS" }
 ];
 
-const [state, send] = useMachine(
-  tabs.machine({
-    id: "editor",
-    value: "markdown",
-    onValueChange: (details) => {
-      activate(details.value as "markdown" | "css");
-    }
-  })
-);
-const api = computed(() => tabs.connect(state.value, send, normalizeProps));
+const service = useMachine(tabs.machine, {
+  id: "editor",
+  value: "markdown",
+  onValueChange: (details) => {
+    activate(details.value as "markdown" | "css");
+  }
+});
+const api = computed(() => tabs.connect(service, normalizeProps));
 </script>

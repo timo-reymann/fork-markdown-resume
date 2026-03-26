@@ -56,30 +56,23 @@ const collectionRef = computed(() =>
   })
 );
 
-const [state, send] = useMachine(
-  combobox.machine({
-    id: props.id,
-    collection: collectionRef.value,
-    value: [props.default],
-    closeOnSelect: false,
-    onInputValueChange: ({ value }) => {
-      const filtered = props.items.filter((item) =>
-        item.label.toLowerCase().includes(value.toLowerCase())
-      );
-      options.value = filtered.length > 0 ? filtered : props.items;
-    },
-    onValueChange: ({ items }: { items: ComboboxItem[] }) => {
-      items[0]?.onSelect();
-    }
-  }),
-  {
-    context: computed(() => ({
-      collection: collectionRef.value
-    }))
+const service = useMachine(combobox.machine, computed(() => ({
+  id: props.id,
+  collection: collectionRef.value,
+  value: [props.default],
+  closeOnSelect: false,
+  onInputValueChange: ({ value }: { value: string }) => {
+    const filtered = props.items.filter((item) =>
+      item.label.toLowerCase().includes(value.toLowerCase())
+    );
+    options.value = filtered.length > 0 ? filtered : props.items;
+  },
+  onValueChange: ({ items }: { items: ComboboxItem[] }) => {
+    items[0]?.onSelect();
   }
-);
+})));
 
-const api = computed(() => combobox.connect(state.value, send, normalizeProps));
+const api = computed(() => combobox.connect(service, normalizeProps));
 
 watch(
   () => props.default,

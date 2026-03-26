@@ -36,9 +36,7 @@ const props = defineProps<{
   icon?: string;
 }>();
 
-const [menuState, menuSend] = useMachine(
-  menu.machine({ id: props.id, "aria-label": props.id })
-);
+const service = useMachine(menu.machine, { id: props.id, "aria-label": props.id });
 
-const api = computed(() => menu.connect(menuState.value, menuSend, normalizeProps));
+const api = computed(() => menu.connect(service, normalizeProps));
 </script>

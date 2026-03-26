@@ -16,15 +16,13 @@ import { normalizeProps, useMachine } from "@zag-js/vue";
 
 const nuxtApp = useNuxtApp();
 
-const [state, send] = useMachine(
-  toast.group.machine({
-    id: "toast",
-    placement: "bottom-end",
-    duration: 2500,
-    removeDelay: 750
-  })
-);
-const toastApi = computed(() => toast.group.connect(state.value, send, normalizeProps));
+const service = useMachine(toast.group.machine, {
+  id: "toast",
+  placement: "bottom-end",
+  duration: 2500,
+  removeDelay: 750
+});
+const toastApi = computed(() => toast.group.connect(service, normalizeProps));
 
 nuxtApp.provide("toast", toastApi);
 
