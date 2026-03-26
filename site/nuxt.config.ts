@@ -46,7 +46,7 @@ export default defineNuxtConfig({
     //    baseURL: '/'
     // Else if host it on https://example.com/resume
     //    baseURL: '/resume/'
-    baseURL: '/markdown-resume/', // baseURL: '/<repository>/'
+    baseURL: '/', // baseURL: '/<repository>/'
     buildAssetsDir: 'assets', // don't use "_" at the begining of the folder name to avoids
     head: {
       viewport: "width=device-width,initial-scale=1",
@@ -66,7 +66,7 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: "https://www.junian.dev/markdown-resume/"
+    url: "http://cv-creator.timo-reymann.de/"
   },
 
   pwa,
