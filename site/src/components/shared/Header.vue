@@ -2,7 +2,7 @@
   <header class="header hstack justify-between pl-4 pr-1 text-c">
     <nuxt-link
       class="hstack space-x-2 cursor-pointer text-gray-900 dark:text-gray-100"
-      :to="$nuxt.$localePath('/')"
+      :to="localePath('/')"
     >
       <Logo hide-on-mobile text="sm md:base" />
       <h1 text="base md:lg"><BrandName /></h1>
@@ -14,7 +14,7 @@
       <!--
       <NavItem
         mr-3
-        :link="$nuxt.$localePath('/resumes')"
+        :link="localePath('/resumes')"
         :label="$t('resumes.my_resumes')"
         icon="i-ep:menu"
       />
@@ -35,3 +35,7 @@
     </div>
   </header>
 </template>
+
+<script lang="ts" setup>
+const localePath = useLocalePath()
+</script>

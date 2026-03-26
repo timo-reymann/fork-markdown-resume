@@ -8,7 +8,7 @@
           height: `${height}px`
         }"
       >
-        <nuxt-link :to="$nuxt.$localePath(`/edit/${props.resume.id}`)">
+        <nuxt-link :to="localePath(`/edit/${props.resume.id}`)">
           <ResumeRender
             :id="resume.id"
             ref="render"
@@ -34,6 +34,8 @@
 
 <script lang="ts" setup>
 import type { ResumeListItem } from "~/types";
+
+const localePath = useLocalePath()
 
 const props = defineProps<{
   resume: ResumeListItem;
