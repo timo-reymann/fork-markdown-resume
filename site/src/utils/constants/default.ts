@@ -123,13 +123,17 @@ export const DEFAULT_CSS_CONTENT = `/* Backbone CSS for Resume Template 1 */
 /* Basic */
 
 ${PREVIEW_SELECTOR} {
-  background-color: white;
+  background-color: white !important;
   color: black;
   text-align: left;
   -moz-hyphens: auto;
   -ms-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
+}
+
+${PREVIEW_SELECTOR} > * {
+  background-color: white !important;
 }
 
 ${PREVIEW_SELECTOR} p,
@@ -248,7 +252,6 @@ ${PREVIEW_SELECTOR} sup.crossref-ref {
 /* Dark & print mode */
 
 .dark ${PREVIEW_SELECTOR} {
-  background-color: #334155;
   color: #e5e7eb;
 }
 

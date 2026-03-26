@@ -53,5 +53,7 @@ export const setDynamicCss = (styles: ResumeStyles, id: string) => {
 export const setBackboneCss = (css: string, id: string) => {
   if (id !== "preview") css = css.replaceAll(PREVIEW_SELECTOR, `#vue-smart-pages-${id}`);
 
+  css += `#vue-smart-pages-${id} { background-color: white !important; color: black !important; }`;
+
   injectCSS(css, `markdown-resume-backbone-${id}`);
 };
