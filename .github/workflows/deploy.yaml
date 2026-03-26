@@ -44,7 +44,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: 25
           cache: pnpm
 
       - name: Install dependencies
@@ -52,8 +52,6 @@ jobs:
 
       - name: Build site
         run: pnpm release
-        env:
-          NUXT_PUBLIC_GOOGLE_FONTS_KEY: ${{ secrets.GOOGLE_FONTS_KEY }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
