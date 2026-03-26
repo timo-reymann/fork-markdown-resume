@@ -23,9 +23,7 @@
 
       <slot name="tail" />
 
-      <!--
-      <ToggleDark />
-      -->
+      <ToggleDark mr-1.5 />
       <a
         class="round-btn"
         href="http://github.com/junian/markdown-resume/"
