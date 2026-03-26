@@ -11,22 +11,13 @@
     <slot name="middle" />
 
     <div hstack>
-      <!--
-      <NavItem
-        mr-3
-        :link="localePath('/resumes')"
-        :label="$t('resumes.my_resumes')"
-        icon="i-ep:menu"
-      />
-      -->
-      <ToggleLang mr-1.5 />
 
       <slot name="tail" />
 
       <ToggleDark mr-1.5 />
       <a
         class="round-btn"
-        href="http://github.com/junian/markdown-resume/"
+        href="https://github.com/timo-reymann/fork-markdown-resume"
         target="_blank"
         rel="nofollow noopener"
       >
@@ -37,5 +28,5 @@
 </template>
 
 <script lang="ts" setup>
-const localePath = useLocalePath()
+const localePath = useLocalePath();
 </script>
