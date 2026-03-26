@@ -1,7 +1,7 @@
 <template>
-  <div class="pane-container" v-bind="api.rootProps">
+  <div class="pane-container" v-bind="api.getRootProps()">
     <div
-      v-bind="api.listProps"
+      v-bind="api.getListProps()"
       class="hstack h-9 text-sm md:(h-10 text-base) w-full text-c bg-c border-b border-c px-4 space-x-2"
     >
       <button
@@ -91,7 +91,7 @@ const tabList = [
 
 const service = useMachine(tabs.machine, {
   id: "editor",
-  value: "markdown",
+  defaultValue: "markdown",
   onValueChange: (details) => {
     activate(details.value as "markdown" | "css");
   }

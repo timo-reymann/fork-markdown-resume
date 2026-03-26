@@ -1,25 +1,25 @@
 <template>
-  <div v-bind="api.rootProps" relative>
+  <div v-bind="api.getRootProps()" relative>
     <div
-      v-bind="api.controlProps"
+      v-bind="api.getControlProps()"
       class="hstack h-9 space-x-2 px-2 py-1 rounded border"
-      :class="api.isOpen ? 'border-darker-c' : 'border-c'"
+      :class="api.open ? 'border-darker-c' : 'border-c'"
     >
       <input
-        v-bind="api.inputProps"
+        v-bind="api.getInputProps()"
         class="w-full outline-none bg-transparent capitalize"
-        @focus="api.open"
+        @focus="api.setOpen(true)"
       />
       <div size-5 flex-center>
-        <span v-show="api.isOpen" i-ic:sharp-arrow-drop-up text-lg />
-        <span v-show="!api.isOpen" i-ic:sharp-arrow-drop-down text-lg />
+        <span v-show="api.open" i-ic:sharp-arrow-drop-up text-lg />
+        <span v-show="!api.open" i-ic:sharp-arrow-drop-down text-lg />
       </div>
     </div>
 
-    <div v-bind="api.positionerProps">
+    <div v-bind="api.getPositionerProps()">
       <ul
         v-if="options.length > 0"
-        v-bind="api.contentProps"
+        v-bind="api.getContentProps()"
         class="dropdown-container z-20 max-h-60 -mt-1"
       >
         <li
@@ -59,7 +59,7 @@ const collectionRef = computed(() =>
 const service = useMachine(combobox.machine, computed(() => ({
   id: props.id,
   collection: collectionRef.value,
-  value: [props.default],
+  defaultValue: [props.default],
   closeOnSelect: false,
   onInputValueChange: ({ value }: { value: string }) => {
     const filtered = props.items.filter((item) =>

@@ -1,11 +1,11 @@
 <template>
-  <div v-bind="api.rootProps">
-    <div v-bind="api.controlProps" py-2>
+  <div v-bind="api.getRootProps()">
+    <div v-bind="api.getControlProps()" py-2>
       <div
-        v-bind="api.trackProps"
+        v-bind="api.getTrackProps()"
         class="h-1 bg-slate-400/50 rounded-full overflow-hidden"
       >
-        <div v-bind="api.rangeProps" class="h-1 bg-brand" />
+        <div v-bind="api.getRangeProps()" class="h-1 bg-brand" />
       </div>
 
       <div
@@ -16,7 +16,7 @@
       >
         <span
           class="group-hover:block p-1 min-w-6 rounded bg-brand absolute -top-2 left-1/2 -translate-x-2/4 -translate-y-full"
-          :class="api.isDragging ? 'block' : 'hidden'"
+          :class="api.dragging ? 'block' : 'hidden'"
           text="white xs center"
         >
           {{ api.value.at(0) }}
@@ -49,7 +49,7 @@ const props = defineProps<{
 const service = useMachine(slider.machine, {
   id: props.id,
   thumbAlignment: "center",
-  value: [props.default],
+  defaultValue: [props.default],
   min: props.min,
   max: props.max,
   step: props.step,

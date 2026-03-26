@@ -1,12 +1,12 @@
 <template>
   <div flex-1 px-4 py-6 space-y-6 bg-dark-c text-sm>
-    <div v-bind="api.rootProps" class="w-full space-y-2">
+    <div v-bind="api.getRootProps()" class="w-full space-y-2">
       <div
-        v-bind="api.dropzoneProps"
+        v-bind="api.getDropzoneProps()"
         class="py-12 hover:bg-darker-c cursor-pointer"
         border="~ c dashed rounded"
       >
-        <input v-bind="api.hiddenInputProps" />
+        <input v-bind="api.getHiddenInputProps()" />
         <div text-center>{{ $t("import.from_local") }}</div>
       </div>
 

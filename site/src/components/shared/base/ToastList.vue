@@ -1,12 +1,6 @@
 <template>
-  <div
-    v-for="(toasts, placement, index) in $toast.toastsByPlacement"
-    :key="index"
-    class="toast-container"
-  >
-    <div :key="placement" v-bind="$toast.getGroupProps({ placement })">
-      <Toast v-for="toast in toasts" :key="toast.id" :actor="toast" />
-    </div>
+  <div v-bind="groupApi.getGroupProps({ placement: 'bottom-end' })" class="toast-container">
+    <Toast v-for="toast in toasts" :key="toast.id" :actor="toast" />
   </div>
 </template>
 
@@ -16,15 +10,19 @@ import { normalizeProps, useMachine } from "@zag-js/vue";
 
 const nuxtApp = useNuxtApp();
 
-const service = useMachine(toast.group.machine, {
-  id: "toast",
+const store = toast.createStore({
   placement: "bottom-end",
   duration: 2500,
   removeDelay: 750
 });
-const toastApi = computed(() => toast.group.connect(service, normalizeProps));
 
-nuxtApp.provide("toast", toastApi);
+const service = useMachine(toast.group.machine, {
+  id: "toast",
+  store
+});
 
-const $toast = computed(() => (nuxtApp.$toast as ComputedRef<toast.GroupApi>).value);
+const groupApi = computed(() => toast.group.connect(service, normalizeProps));
+const toasts = computed(() => groupApi.value.getToasts());
+
+nuxtApp.provide("toastStore", store);
 </script>

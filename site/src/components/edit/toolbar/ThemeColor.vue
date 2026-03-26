@@ -17,13 +17,13 @@
     </div>
 
     <!-- Color picker -->
-    <div v-bind="api.rootProps" relative z-21>
+    <div v-bind="api.getRootProps()" relative z-21>
       <div
-        v-bind="api.controlProps"
+        v-bind="api.getControlProps()"
         class="w-full hstack h-9 space-x-2 px-2 py-1 rounded border"
-        :class="api.isOpen || isFocus ? 'border-darker-c' : 'border-c'"
+        :class="api.open || isFocus ? 'border-darker-c' : 'border-c'"
       >
-        <button v-bind="api.triggerProps">
+        <button v-bind="api.getTriggerProps()">
           <div
             class="size-4 rounded-sm"
             v-bind="api.getSwatchProps({ value: api.value })"
@@ -37,9 +37,9 @@
         />
       </div>
 
-      <div v-bind="api.positionerProps" w-full ml-2>
+      <div v-bind="api.getPositionerProps()" w-full ml-2>
         <div
-          v-bind="api.contentProps"
+          v-bind="api.getContentProps()"
           class="bg-c overflow-hidden shadow-md"
           border="~ c rounded"
         >
@@ -55,7 +55,7 @@
 
           <div hstack my-3 px-3 space-x-3>
             <button
-              v-bind="api.eyeDropperTriggerProps"
+              v-bind="api.getEyeDropperTriggerProps()"
               class="flex-center size-7 rounded hover:bg-dark-c"
             >
               <span i-bx:bxs-eyedropper text-lg />
@@ -89,7 +89,7 @@ const isFocus = ref(false);
 
 const service = useMachine(colorPicker.machine, {
   id: "theme-color",
-  value: colorPicker.parse(styles.themeColor),
+  defaultValue: colorPicker.parse(styles.themeColor),
   positioning: {
     gutter: 14
   },

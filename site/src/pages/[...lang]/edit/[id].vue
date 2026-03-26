@@ -15,7 +15,7 @@
     </Header>
 
     <div class="workspace size-full overflow-hidden" flex="~ 1" pb-2>
-      <div v-bind="api.rootProps" px-3>
+      <div v-bind="api.getRootProps()" px-3>
         <div class="editor-pane" v-bind="api.getPanelProps({ id: 'editor' })">
           <Editor />
         </div>
@@ -41,7 +41,8 @@ import { normalizeProps, useMachine } from "@zag-js/vue";
 // Horizontal splitpane
 const service = useMachine(splitter.machine, {
   id: "h",
-  size: [{ id: "editor" }, { id: "preview" }]
+  panels: [{ id: "editor" }, { id: "preview" }],
+  defaultSize: [50, 50]
 });
 
 const api = computed(() => splitter.connect(service, normalizeProps));

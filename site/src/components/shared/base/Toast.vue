@@ -1,6 +1,6 @@
 <template>
   <div
-    v-bind="api.rootProps"
+    v-bind="api.getRootProps()"
     class="hstack space-x-5 min-w-80 text-white rounded-md shadow-c px-4 py-3"
     :class="bgColor"
   >
@@ -10,7 +10,7 @@
         <span v-else-if="api.type === 'info'" i-material-symbols:info-rounded text-lg />
         <span v-else-if="api.type === 'error'" i-bx:bxs-error />
       </div>
-      <p v-bind="api.descriptionProps">{{ api.description }}</p>
+      <p v-bind="api.getDescriptionProps()">{{ api.description }}</p>
     </div>
 
     <button size-6 flex-center @click="api.dismiss()">

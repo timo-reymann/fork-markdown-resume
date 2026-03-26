@@ -1,14 +1,14 @@
 <template>
   <div>
-    <button v-bind="api.triggerProps" class="hstack cursor-pointer space-x-1 p-1.5 rounded transition-colors hover:bg-gray-200 dark:hover:bg-gray-700">
+    <button v-bind="api.getTriggerProps()" class="hstack cursor-pointer space-x-1 p-1.5 rounded transition-colors hover:bg-gray-200 dark:hover:bg-gray-700">
       <span v-if="icon" :class="icon" md:text-lg />
       <span class="truncate max-w-xs hide-on-mobile">
         {{ label }}
       </span>
     </button>
 
-    <div v-bind="api.positionerProps">
-      <ul v-bind="api.contentProps" class="dropdown-container z-40 text-xs md:text-sm">
+    <div v-bind="api.getPositionerProps()">
+      <ul v-bind="api.getContentProps()" class="dropdown-container z-40 text-xs md:text-sm">
         <li
           v-for="(item, i) in items"
           :key="`${i}-${item.label}`"

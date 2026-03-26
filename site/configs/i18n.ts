@@ -31,8 +31,11 @@ export const i18n: NuxtI18nOptions = {
     }
     */
   ],
-  langDir: "i18n",
+  langDir: "../src/i18n",
   compilation: {
     strictMessage: false
+  },
+  bundle: {
+    optimizeTranslationDirective: false
   }
 };

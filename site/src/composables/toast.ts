@@ -1,39 +1,39 @@
-import * as toast from "@zag-js/toast";
+import type * as toast from "@zag-js/toast";
 
 export const useToast = () => {
   const nuxtApp = useNuxtApp();
-  const $toast = computed(() => (nuxtApp.$toast as ComputedRef<toast.GroupApi>).value);
+  const store = nuxtApp.$toastStore as toast.Store;
 
   const save = () => {
-    $toast.value.create({
+    store.create({
       description: nuxtApp.$i18n.t("notification.save"),
       type: "success"
     });
   };
 
   const switchResume = (msg: string) => {
-    $toast.value.create({
+    store.create({
       description: nuxtApp.$i18n.t("notification.switch", { msg }),
       type: "info"
     });
   };
 
   const deleteResume = (msg: string) => {
-    $toast.value.create({
+    store.create({
       description: nuxtApp.$i18n.t("notification.delete", { msg }),
       type: "error"
     });
   };
 
   const newResume = () => {
-    $toast.value.create({
+    store.create({
       description: nuxtApp.$i18n.t("notification.new"),
       type: "success"
     });
   };
 
   const duplicate = (msg: string) => {
-    $toast.value.create({
+    store.create({
       description: nuxtApp.$i18n.t("notification.duplicate", {
         old: msg,
         new: msg + " Copy"
@@ -44,12 +44,12 @@ export const useToast = () => {
 
   const correct = (msg: true | number) => {
     if (msg === true) {
-      $toast.value.create({
+      store.create({
         description: nuxtApp.$i18n.t("notification.correct.no"),
         type: "info"
       });
     } else {
-      $toast.value.create({
+      store.create({
         description: nuxtApp.$i18n.t("notification.correct.yes", { num: msg }),
         type: "success"
       });
@@ -58,12 +58,12 @@ export const useToast = () => {
 
   const importResume = (msg: boolean) => {
     if (msg) {
-      $toast.value.create({
+      store.create({
         description: nuxtApp.$i18n.t("notification.import.yes"),
         type: "success"
       });
     } else {
-      $toast.value.create({
+      store.create({
         description: nuxtApp.$i18n.t("notification.import.no"),
         type: "error"
       });

@@ -1,19 +1,19 @@
 <template>
   <div
     class="border-1.5 rounded hstack space-x-1"
-    :class="api.isEditing ? 'border-dark-c' : 'border-transparent'"
+    :class="api.editing ? 'border-dark-c' : 'border-transparent'"
   >
-    <div v-bind="api.rootProps" class="flex-1">
-      <div v-bind="api.areaProps">
+    <div v-bind="api.getRootProps()" class="flex-1">
+      <div v-bind="api.getAreaProps()">
         <input
-          v-bind="api.inputProps"
+          v-bind="api.getInputProps()"
           class="w-full text-center outline-none px-1 bg-transparent"
         />
-        <div v-bind="api.previewProps" text-center truncate />
+        <div v-bind="api.getPreviewProps()" text-center truncate />
       </div>
     </div>
     <button
-      v-bind="api.editTriggerProps"
+      v-bind="api.getEditTriggerProps()"
       class="cursor-pointer p-1 rounded transition-colors hover:bg-gray-200 dark:hover:bg-gray-700"
       :title="$t ? $t('resumes.rename') : 'Rename'"
     >
