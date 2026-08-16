@@ -1,0 +1,9 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "local>timo-reymann/renovate-config",
+    "local>timo-reymann/renovate-config//presets/ecosystems/npm",
+    "local>timo-reymann/renovate-config//presets/groups/npm-zag-js",
+    "local>timo-reymann/renovate-config//presets/groups/npm-nuxt-ecosystem"
+  ]
+}
